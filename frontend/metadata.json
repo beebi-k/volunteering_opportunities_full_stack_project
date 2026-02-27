@@ -1,0 +1,7 @@
+{
+  "name": "Volunteer Opportunities Hub – India Edition",
+  "description": "A production-ready platform connecting volunteers with real Indian NGOs, featuring advanced analytics, AI-powered guidance, and impact tracking.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}

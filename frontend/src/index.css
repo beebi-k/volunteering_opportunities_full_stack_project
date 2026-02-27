@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    @apply transition-colors duration-300;
+  }
+  
+  body {
+    @apply bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-50;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-brand-primary: #10b981;
+  --color-brand-secondary: #3b82f6;
+  --color-brand-accent: #f59e0b;
+  
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-glow: glow 2s ease-in-out infinite alternate;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  @keyframes glow {
+    from { box-shadow: 0 0 5px #10b981, 0 0 10px #10b981; }
+    to { box-shadow: 0 0 20px #10b981, 0 0 30px #10b981; }
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded-full bg-zinc-200 hover:bg-zinc-300 dark:bg-zinc-800 dark:hover:bg-zinc-700;
+}
+
+/* Glassmorphism */
+.glass {
+  @apply bg-white/70 backdrop-blur-xl dark:bg-zinc-900/70;
+}
+
+.glass-border {
+  @apply border border-white/20 dark:border-white/10;
+}
+
