@@ -27,7 +27,9 @@ async function startServer() {
   await seedData();
 
   const app = express();
-  const PORT = 3000;
+  
+  // FIX: Use Render's dynamic port or default to 3000
+  const PORT = process.env.PORT || 3000;
 
   app.set('trust proxy', 1);
 
@@ -60,23 +62,27 @@ async function startServer() {
     res.json({ status: "ok", timestamp: new Date().toISOString() });
   });
 
-  if (process.env.NODE_ENV !== "production") {
+  // Logic for Production vs Development
+  if (process.env.NODE_ENV === "production") {
+    // FIX: Ensure static files are served from the correct absolute path
+    const buildPath = path.resolve(__dirname, "dist");
+    app.use(express.static(buildPath));
+    
+    app.get("*", (req, res) => {
+      res.sendFile(path.join(buildPath, "index.html"));
+    });
+  } else {
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
     });
     app.use(vite.middlewares);
-  } else {
-    app.use(express.static(path.join(__dirname, "dist")));
-    app.get("*", (req, res) => {
-      res.sendFile(path.join(__dirname, "dist", "index.html"));
-    });
   }
 
+  // FIX: Listen on PORT variable and 0.0.0.0 for external access
   app.listen(PORT, "0.0.0.0", () => {
     console.log(`\n🚀 VolunteerHub Server is ready!`);
-    console.log(`📡 Network: http://0.0.0.0:${PORT}`);
-    console.log(`🏠 Local:   http://localhost:${PORT}\n`);
+    console.log(`📡 Port: ${PORT}`);
   });
 }
 
