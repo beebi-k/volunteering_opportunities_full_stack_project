@@ -33,7 +33,7 @@ const ResourceHub = () => {
       icon: Play, 
       rating: 4.9, 
       image: '/assets/First_Aid_raining.jpeg', 
-      websiteLink: 'https://ircsfa.org/',
+      //websiteLink: 'https://ircsfa.org/',
       videoLink: 'https://www.youtube.com/watch?v=APinK3ijfiQ'
     },
     { 
@@ -67,7 +67,7 @@ const ResourceHub = () => {
       icon: Play, 
       rating: 4.6, 
       image: '/assets/Effective_Communication.jpeg', 
-      websiteLink: 'https://www.helpguide.org/relationships/communication/effective-communication',
+      //websiteLink: 'https://www.helpguide.org/relationships/communication/effective-communication',
       videoLink: 'https://www.youtube.com/watch?v=6pYSbdGiDYw' 
     },
     { 
